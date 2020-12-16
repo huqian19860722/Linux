@@ -1,7 +1,7 @@
 关闭seLinux遇到的坑：
 
-setenforce 0 && sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
-setenforce 0 && sed -i 's/SELINUX=enforcing/SELINUX=permissive/g' /etc/sysconfig/selinux
+setenforce 0 && sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+setenforce 0 && sed -i 's/SELINUX=enforcing/SELINUX=permissive/g' /etc/selinux/config
 sed –i会破坏原有文件的的软链接或硬链接，已经不在是/etc/selinux/config的链接文件，从而变成了一个普通文件，因此无论你在如何修改/etc/sysconfig/selinux和重启系统，它都不会生效
 解决方法：
 rm -rf /etc/sysconfig/selinux  删除原软链接文件
